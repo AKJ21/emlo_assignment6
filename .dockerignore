@@ -1,8 +1,0 @@
-scripts
-data
-logs
-notebooks
-outputs
-copper.egg-info
-.dvc
-data.dvc
