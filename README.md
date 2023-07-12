@@ -1,31 +1,40 @@
-# Experiment Tracking
+# Gradio Integration to Lightning Template
 
-## Training ViT Module on CIFAR10 dataset (multirun using joblib)
+## ViT Lightning Module on CIFAR10 dataset
 
 ## Model Training and Testing
 
-1. Run "docker-compose build" to build train and logger images.
-2. Run "docker-compose run train" to start training your ViT model on the CIFAR10 dataset for three different patch sizes 4, 8, and 16.
-Note: Training inside docker will be a multirun using joblib. There are five experiments conducted based on three different patch sizes. Training code running inside docker is:
-"copper_train -m hydra/launcher=joblib hydra.launcher.n_jobs=3 experiment=cifar10 model.patch_size=4,8,16 data.num_workers=0".
-3. Run "docker-compose run --service-ports logger" to start mlflow logging ui. Open "localhost:5000" inside your browser to view mlflow logs.
+1. Clone the repo:
+```
+git clone -b branch gradio https://github.com/AKJ21/emlo_assignment6.git
+```
+2. Install requirements and setup:
+```
+pip install -r requirements.txt && pip install -e .
+```
+3. Train the model:
+```
+copper_train experiment=gradio trainer.max_epochs=10"
+```
+Note: By default, trainer is set to train for maximum 1 epochs. You may change this setting by adding trainer.max_epcohs=10 for training 10 epochs.
 
-## DVC Setup
-- Install dvc using "pip install dvc".
-- Initialized DVC using `dvc init`. (you will find a .dvc folder created for your project)
-- Add data to DVC : `dvc add docker_data`.
-- Add logs & model to DVC : `dvc add docker_logs`.
+To check default parameters set for trainer:
+`copper_train --help`
 
-- To track the changes with git, run: `git add docker_data.dvc .gitignore`
-- To enable auto staging, run: `dvc config core.autostage true`
+To check parameters list for gradio experiment:
+`copper_train experiment=gradio --help`
 
-You will find two files created: `docker_data.dvc` & `docker_logs.dvc`.
+## Gradio Application
 
-## Integrating local storage with DVC
-- Add data & logs to local folder dvc-data: `dvc remote add -d local /workspace/dvc-data`
-- Check if a local remote storage has been added by using this command: `dvc remote list` (it will give you list of all remote storage for your project)
-- Push the data using : `dvc push -r local`
-- Pull data from local storage : `dvc pull -r local`
+To run locally:
+`python3 gradio.py`
 
-Group Members:
-Aman Jaipuria, Anurag Mittal
+To run the application inside docker:
+- Build docker image with "`docker build --tag vit-gradio .`"
+- Run the built image: "`docker run --rm -it vit-gradio`"
+
+Open `localhost:8080` to start playing with the app.
+
+## Group Members:
+- Aman Jaipuria
+- Anurag Mittal

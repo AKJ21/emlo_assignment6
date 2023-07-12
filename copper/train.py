@@ -13,7 +13,6 @@ from copper import utils
 
 log = utils.get_pylogger(__name__)
 
-
 @utils.task_wrapper
 def train(cfg: DictConfig) -> Tuple[dict, dict]:
     # set seed for random number generators in pytorch, numpy and python.random
@@ -59,10 +58,12 @@ def train(cfg: DictConfig) -> Tuple[dict, dict]:
 
     # Saving model using torch.jit
     log.info("Scripting Model ...")
+    
+    os.makedirs('./model', exist_ok=True)
     scripted_model = model.to_torchscript(method="script")
-    torch.jit.save(scripted_model, f"{cfg.paths.output_dir}/model.script.pt")
+    torch.jit.save(scripted_model, "./model/model.script.pt")
 
-    log.info(f"Saving traced model to {cfg.paths.output_dir}/model.script.pt")
+    log.info(f"Saving scipted model to ./model/model.script.pt")
 
     if cfg.get("test"):
         log.info("Starting testing!")

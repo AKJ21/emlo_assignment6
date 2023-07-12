@@ -12,7 +12,7 @@ RUN pip3 install \
 
 COPY gradio.py .
 
-COPY /outputs/model.script.pt model/
+COPY /model/model.script.pt workspace/model/
 
 EXPOSE 8080
 

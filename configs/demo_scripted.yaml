@@ -8,4 +8,4 @@ defaults:
 task_name: "demo_traced"
 
 # checkpoint is necessary for demo
-ckpt_path: ???
+ckpt_path: "./model/model.script.pt"
