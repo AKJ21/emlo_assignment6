@@ -168,3 +168,5 @@ docker_data
 docker_logs
 
 !.dvc
+
+/model

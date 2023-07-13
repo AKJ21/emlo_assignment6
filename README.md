@@ -14,7 +14,7 @@ pip install -r requirements.txt && pip install -e .
 ```
 3. Train the model:
 ```
-copper_train experiment=gradio trainer.max_epochs=10"
+copper_train experiment=gradio trainer.max_epochs=10
 ```
 Note: By default, trainer is set to train for maximum 1 epochs. You may change this setting by adding trainer.max_epcohs=10 for training 10 epochs.
 
@@ -30,10 +30,12 @@ To run locally:
 `python3 gradio.py`
 
 To run the application inside docker:
-- Build docker image with "`docker build --tag vit-gradio .`"
-- Run the built image: "`docker run --rm -it vit-gradio`"
+- Build docker image with "`docker build --tag vit-gradio:latest .`"
+- Run the built image: "`docker run --rm -it -p 8080:8080 vit-gradio:latest`"
 
 Open `localhost:8080` to start playing with the app.
+
+You can either select an image from local, or you may use one of the sample images given in UI.
 
 ## Group Members:
 - Aman Jaipuria
