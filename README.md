@@ -31,11 +31,21 @@ To run locally:
 
 To run the application inside docker:
 - Build docker image with "`docker build --tag vit-gradio:latest .`"
-- Run the built image: "`docker run --rm -it -p 8080:8080 vit-gradio:latest`"
+- Run the built image: "`docker run -p 8080:8080 vit-gradio:latest`"
 
 Open `localhost:8080` to start playing with the app.
 
 You can either select an image from local, or you may use one of the sample images given in UI.
+
+## Download Application Image from Docker Hub
+```
+# pull image
+docker pull amanjaipuria/vit-gradio:latest
+
+# run image
+docker run -p 8080:8080 amanjaipuria/vit-gradio:latest
+```
+Open `localhost:8080` to run the web application.
 
 ## Group Members:
 - Aman Jaipuria

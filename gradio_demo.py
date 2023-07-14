@@ -13,6 +13,7 @@ def main() :
     print("Instantiating scripted model: {}".format(ckpt_path))
     model = torch.jit.load(ckpt_path)
 
+    print("Getting CIFAR10 class names...")
     # get the cifar10 classnames
     url, filename = (
         "<https://raw.githubusercontent.com/RubixML/CIFAR-10/master/labels.txt>",
@@ -51,6 +52,7 @@ def main() :
     ]
     )
 
+    print("Launching the web application...")
     demo.launch(server_name="0.0.0.0", server_port=8080)
 
 if __name__ == "__main__":
